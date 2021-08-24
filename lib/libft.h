@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 12:27:21 by hlevi             #+#    #+#             */
-/*   Updated: 2021/08/23 13:28:52 by hlevi            ###   ########.fr       */
+/*   Updated: 2021/08/24 15:19:49 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <fcntl.h>
+# include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <errno.h>
-# include <string.h>
 
 typedef struct s_data
 {
 	int		fd[2];
 	int		firstfd;
 	int		secfd;
-	char	*firstcmd;
-	char	*seccmd;
-	char	**firstcmdarg;
-	char	**seccmdarg;
+	char	*fcmd;
+	char	*scmd;
+	char	**fcmdarg;
+	char	**scmdarg;
 	char	**env;
 	int		status;
 }			t_data;
@@ -49,5 +48,14 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		ft_strlen(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strrchr(const char *s, int c);
-
+// Path
+void	free_data(t_data *data);
+char	*init_path(char **env);
+int		join_path(char **cmd_arr, char *path, char *arg);
+void	get_path(t_data **data, int cmd);
+// Pipex
+void	do_fcmd(t_data *data);
+void	do_scmd(t_data *data);
+void	check_data(t_data **data);
+void	pipex(t_data *data);
 #endif

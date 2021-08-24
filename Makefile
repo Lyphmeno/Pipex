@@ -14,11 +14,12 @@ SRCS	=	./lib/ft_calloc.c\
 			./lib/ft_strlen.c\
 			./lib/ft_strncmp.c\
 			./lib/ft_strrchr.c\
+			./srcs/path.c\
 			./srcs/pipex.c\
 
 CC		=	gcc
 
-CFLAGS		=	-Werror -Wextra -Wall -fsanitize=address
+CFLAGS		=	-Werror -Wextra -Wall -fsanitize=address -g
 
 DEL			=	rm -f
 
